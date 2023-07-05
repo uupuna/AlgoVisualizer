@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<style>
+    textarea{
+        resize: none;
+        width: 100%;
+        min-height: 100px;
+        padding: 5px;
+        overflow: hidden;
+        box-sizing: border-box;
+        background: #F0F8FF;
+    }
+</style>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="../css/bfs.css">
+
+
+    <title>Algorithm Visualization - Heap</title>
+</head>
+
+<body style="background:#F0F8FF;">
+<div class="container-fluid">
+    <div id="loadNavBar"></div>
+    <h1 class="text-center" style="margin-top: 20px">Max/Min Heap</h1>
+
+    <div class="row" style="margin-top: 20px">
+        <div class="col-sm-3 border" id="create-tree">
+            <h2>Heap Data</h2>
+            <label>Please enter an array using \n to separate each data</label>
+            <textarea id="message-box"></textarea>
+        </div>
+        <div class="col-sm-3 border" id="insert-replace" style="display: none">
+            <h2>Data</h2>
+            <label>Please enter one data to insert</label>
+            <input id="data" style="background: #F0F8FF">
+        </div>
+        <div class="col-sm-6 border">
+            <h2 class="text-center">Tree Panel</h2>
+            <div class="row" style="padding-left: 15px;padding-right: 15px;margin-bottom: 5px">
+                <div class="ml-auto">
+                    <button id="max-heap" type="button" class="btn btn-dark" style="background-color: #055C9D; border: none;">Create Max Heap</button>
+                    <button id="min-heap" type="button" class="btn btn-dark" style="background-color: #055C9D; border: none;">Create Min Heap</button>
+                    <button id="insert" type="button" class="btn btn-dark" style="background-color: #055C9D; border: none;">Insert</button>
+                    <button id="delete" type="button" class="btn btn-dark" style="background-color: #055C9D; border: none;">Delete</button>
+                    <button id="reset-button" type="button" class="btn btn-dark" style="background-color: #055C9D; border: none;"
+                            onclick="javascript:location.reload();">Reset
+                    </button>
+                </div>
+            </div>
+            <svg height="800" width="100%" style="outline: thin solid black;" id="graphSvg">
+            </svg>
+        </div>
+        <div class="col-sm-3 border" id="thirdPanel">
+            <h2>Instruction</h2>
+            <p>
+                A heap is a binary tree that satisfies the heap property. Heap can be of two types:
+            </p>
+            <p>
+                Min Heap: The element of each node is greater than or equal to the element at its parent. The minimum value element is at the root.
+            </p>
+            <p>
+                Max Heap: The element of each node is less than the element at its parent. The maximum value element is at the root.
+            </p>
+            <p>
+                Max/Min Heap can let us easily know the biggest/smallest element in an array. We can also use add and delete operation to update a heap.
+            </p>
+            <b>Instructions</b>
+            <ol>
+                <li>Input data per line in Heap Data (at most 31 data)</li>
+                <li>Click the Max Heap or Min Heap button to create Heap</li>
+                <li>Input one data and click the Insert button to insert it from the bottom of Heap</li>
+                <li>Click the Delete button to delete the root of Heap</li>
+            </ol>
+            <h2>Log Panel</h2>
+            <textarea readonly style="width: 100%; height:800px; border: none;outline: none; background:#F0F8FF;" id="logPanel"></textarea>
+        </div>
+    </div>
+</div>
+</body>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT" crossorigin="anonymous">
+</script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous">
+</script>
+<script>
+    $("#message-box").on('input', function() {
+        var scroll_height = $("#message-box").get(0).scrollHeight;
+
+        $("#message-box").css('height', scroll_height + 'px');
+    });
+
+    $('#loadNavBar').load("includings/navbar.html");
+</script>
+<script type="module" src="../js/tree_heap.js"></script>
+</body>
+</html>
